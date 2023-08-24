@@ -20,11 +20,11 @@ module.exports = () => {
     plugins: [
       // TODO: Add HtmlWebpackPlugin configurations
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
         chunks: ['main'],
       }),
       new HtmlWebpackPlugin({
-        template: './src/install.html',
+        template: './index.html',
         filename: 'install.html',
         chunks: ['install'],
       }),
@@ -38,7 +38,7 @@ module.exports = () => {
         background_color: '#272822',
         icons: [
           {
-            src: path.resolve('src/images/logo.png'),
+            src: path.resolve('assets/icons/icon_96x96.97a96e0fc4eb2a8bec3b8d49d90f1d14.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
@@ -54,7 +54,6 @@ module.exports = () => {
 
     module: {
       rules: [
-        // TODO: Add Babel configuration for JavaScript files
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -65,8 +64,13 @@ module.exports = () => {
             },
           },
         },
-        
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+          include: path.resolve(__dirname, 'src/css'),
+        },
       ],
+      
     },
   };
 };
